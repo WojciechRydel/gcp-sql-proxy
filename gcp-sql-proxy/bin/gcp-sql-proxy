@@ -1,0 +1,38 @@
+#!/bin/bash
+CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/gcp-sql-proxy"
+LIB_DIR="${XDG_LIB_HOME:-${HOME}/.local/lib}/gcp-sql-proxy"
+
+TARGET=$1
+CONFIG_FILE="${2:-${CONFIG_DIR}/conf.ini}"
+CLOUD_SQL_PROXY_EXEC="${3:-${HOME}/.local/bin/cloud_sql_proxy}"
+
+if [ -z "${TARGET}" ]; then
+  echo "No TARGET selected"
+
+  exit 1
+fi
+
+if [ ! -f "${CONFIG_FILE}" ]; then
+  echo "Config file does not exists: ${CONFIG_FILE}"
+
+  exit 1
+fi
+
+RUNTIME_CONFIG=()
+
+
+while read line; do
+
+  RUNTIME_CONFIG+=("-${line}")
+
+done < <("${LIB_DIR}/_parse_config" \
+  -v "TARGET=${TARGET}" \
+  -- "${CONFIG_FILE}")
+
+echo "${RUNTIME_CONFIG[@]}"
+
+$("${CLOUD_SQL_PROXY_EXEC}" "${RUNTIME_CONFIG[@]}")
+
+
+
+

@@ -1,0 +1,9 @@
+#!/usr/bin/awk -f
+{
+  if ($0 ~ /^\[.*\]$/) {
+    gsub(/^\[|\]$/, "", $0)
+      SECTION=$0
+  } else if (($0 != "") && (SECTION==TARGET)) {
+    print $0
+  }
+};

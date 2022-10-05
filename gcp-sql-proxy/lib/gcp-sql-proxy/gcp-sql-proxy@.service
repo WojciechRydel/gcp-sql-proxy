@@ -1,0 +1,10 @@
+[Unit]
+Description=GCP SQL Proxy to %I
+
+[Service]
+ExecStart=/home/voytech/.local/bin/gcp-sql-proxy %I
+Restart=on-failure
+RestartSec=60
+
+[Install]
+WantedBy=default.target
