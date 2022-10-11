@@ -2,7 +2,7 @@
 Description=GCP SQL Proxy to %I
 
 [Service]
-ExecStart=/home/voytech/.local/bin/gcp-sql-proxy %I
+ExecStart=/usr/bin/bash -c '${HOME}/.local/bin/gcp-sql-proxy %I'
 Restart=on-failure
 RestartSec=60
 
