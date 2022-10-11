@@ -1,5 +1,5 @@
 # gcp-sql-proxy
-[Google Cloud Platform SQL Proxy extension](https://github.com/GoogleCloudPlatform/cloud-sql-proxy)
+[Google Cloud Platform SQL Proxy](https://github.com/GoogleCloudPlatform/cloud-sql-proxy) extension
 
 ## Why
 
@@ -22,7 +22,7 @@ gcp-sql-proxy development
 Above command will match the ini section by name and apply all arguments
 defined. It translates to
 ```bash
-cloud_sql_proxy -instance=xxx:xxx:xxx=tcp:15432
+cloud_sql_proxy -instances=xxx:xxx:xxx=tcp:15432
 ```
 
 Since all args of `cloud_sql_proxy` are prefixed with a single dash, the
